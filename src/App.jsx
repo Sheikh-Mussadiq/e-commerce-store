@@ -1,12 +1,12 @@
 import { use, useEffect, useState } from "react";
 
-import Topbar from "./components/topbar/Topbar";
+import HomePage from "./Pages/HomePage";
 
 function App() {
   return (
-    <>
-      <Topbar></Topbar>
-    </>
+    <div className="font-primary leading-normal">
+      <HomePage />
+    </div>
   );
 }
 
