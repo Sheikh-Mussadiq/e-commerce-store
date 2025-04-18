@@ -3,7 +3,7 @@ import { Search } from "lucide-react";
 
 const Hero = () => {
   return (
-    <div className="bg-gray-100 h-screen w-full">
+    <div className="bg-gray-800 h-screen w-full">
       <div className="container mx-auto">
         <div className="flex flex-col items-center justify-center h-screen">
           <h1 className="text-5xl font-bold text-center mb-4">
@@ -12,16 +12,15 @@ const Hero = () => {
             <span>Your Home, Your Signature Style!</span>
           </h1>
 
-          <p className="text-gray-500 text-center text-xl max-w-xl mt-4">
+          <p className="text-gray-500 text-center text-xl font-semibold max-w-2xl mt-8 px-10">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
             quos. Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Quisquam, quos.
+            elit. Quisquam, quos.
           </p>
 
-          <div className="flex flex-col items-center justify-center mt-4">
-            <div className="flex items-center justify-center relative w-52">
+          <div className="flex flex-col items-center justify-center mt-8">
+            <div className="flex items-center justify-center relative w-full">
               <input
                 type="text"
                 placeholder="Search An Item"
