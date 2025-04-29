@@ -1,33 +1,9 @@
 import React from "react";
+import { Plus } from "lucide-react";
+import { products } from "../../MockData";
 
 const FeaturedProducts = () => {
-  const products = [
-    {
-      id: 1,
-      name: "Product 1",
-      price: 100,
-    },
-    {
-      id: 2,
-      name: "Product 2",
-      price: 200,
-    },
-    {
-      id: 3,
-      name: "Product 3",
-      price: 300,
-    },
-    {
-      id: 4,
-      name: "Product 4",
-      price: 400,
-    },
-    {
-      id: 5,
-      name: "Product 5",
-      price: 500,
-    },
-  ];
+  console.log(products);
   return (
     <>
       <section
@@ -41,17 +17,22 @@ const FeaturedProducts = () => {
             quos.
           </p>
         </header>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {products.map((product) => (
-            <div key={product.id} className="bg-white overflow-hidden">
+        <div className="flex flex-row flex-wrap gap-4">
+          {products.map((product, index) => (
+            <div key={index} className="bg-white overflow-hidden">
               <img
                 src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500&h=300&fit=crop"
                 alt="Product"
-                className="max-w-86 min-h-86 rounded-xl object-cover"
+                className="h-86 w-86 rounded-xl object-cover"
               />
               <div className="p-4">
                 <h2 className="text-lg font-bold">{product.name}</h2>
-                <p className="text-gray-500">{product.price}</p>
+                <div className="flex justify-between items-center">
+                  <p className="text-gray-500">{product.price}</p>
+                  <button className="bg-black text-white px-4 py-2 rounded-full">
+                    <Plus className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
             </div>
           ))}

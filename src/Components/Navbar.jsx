@@ -1,7 +1,7 @@
 import React from "react";
 import { ShoppingCart, User, Search, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "../../assets/logo.png";
+import logo from "../assets/logo.png";
 
 const Navbar = () => {
   return (
