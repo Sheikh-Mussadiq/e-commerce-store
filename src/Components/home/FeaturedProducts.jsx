@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Plus } from "lucide-react";
-import { products } from "../../MockData";
+import { ProductsContext } from "../../Context/ProductsContent";
 
 const FeaturedProducts = () => {
-  console.log(products);
+  const { products, loading } = useContext(ProductsContext);
   return (
     <>
       <section
@@ -18,24 +18,30 @@ const FeaturedProducts = () => {
           </p>
         </header>
         <div className="flex flex-row flex-wrap gap-4">
-          {products.map((product, index) => (
-            <div key={index} className="bg-white overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500&h=300&fit=crop"
-                alt="Product"
-                className="h-86 w-86 rounded-xl object-cover"
-              />
-              <div className="p-4">
-                <h2 className="text-lg font-bold">{product.name}</h2>
-                <div className="flex justify-between items-center">
-                  <p className="text-gray-500">{product.price}</p>
-                  <button className="bg-black text-white px-4 py-2 rounded-full">
-                    <Plus className="w-4 h-4" />
-                  </button>
+          {loading ? (
+            <div className="flex justify-center items-center h-86 w-86">
+              <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-black"></div>
+            </div>
+          ) : (
+            products.map((product, index) => (
+              <div key={index} className="bg-white overflow-hidden">
+                <img
+                  src={product.image}
+                  alt="Product"
+                  className="h-86 w-86 rounded-xl object-cover"
+                />
+                <div className="p-4">
+                  <h2 className="text-lg font-bold">{product.title}</h2>
+                  <div className="flex justify-between items-center">
+                    <p className="text-gray-500">{product.price}</p>
+                    <button className="bg-black text-white px-4 py-2 rounded-full">
+                      <Plus className="w-4 h-4" />
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </section>
     </>
