@@ -1,9 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import { Plus } from "lucide-react";
-import { ProductsContext } from "../../Context/ProductsContent";
+import { ProductsContext } from "../../Context/ProductsContext";
 
 const FeaturedProducts = () => {
   const { products, loading } = useContext(ProductsContext);
+
+  const featuredProducts = useMemo(() => {
+    if (!products.length) return [];
+
+    const categories = [
+      ...new Set(products.map((product) => product.category)),
+    ];
+
+    const selectedProducts = categories.map((category) => {
+      return products.find((product) => product.category === category);
+    });
+
+    return selectedProducts.slice(0, 4);
+  }, [products]);
   return (
     <>
       <section
@@ -23,12 +37,15 @@ const FeaturedProducts = () => {
               <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-black"></div>
             </div>
           ) : (
-            products.map((product, index) => (
-              <div key={index} className="bg-white overflow-hidden">
+            featuredProducts.map((product) => (
+              <div
+                key={product.id || `product-${Math.random()}`}
+                className="bg-white overflow-hidden max-w-[250px]"
+              >
                 <img
                   src={product.image}
-                  alt="Product"
-                  className="h-86 w-86 rounded-xl object-cover"
+                  alt={product.title}
+                  className="w-full rounded-xl object-cover bg-gray-200 h-60"
                 />
                 <div className="p-4">
                   <h2 className="text-lg font-bold">{product.title}</h2>

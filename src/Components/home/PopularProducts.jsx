@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { ProductsContext } from "../../Context/ProductsContent";
+import { ProductsContext } from "../../Context/ProductsContext";
 import { Plus } from "lucide-react";
 
 const PopularProducts = () => {
@@ -22,8 +22,11 @@ const PopularProducts = () => {
               <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-black"></div>
             </div>
           ) : (
-            products.map((product, index) => (
-              <div key={index} className="overflow-hidden rounded-lg">
+            products.map((product) => (
+              <div
+                key={product.id || `product-${Math.random()}`}
+                className="overflow-hidden rounded-lg"
+              >
                 <div className="aspect-w-4 aspect-h-3">
                   <img
                     src={product.image}
