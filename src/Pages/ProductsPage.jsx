@@ -1,8 +1,9 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
+import CollectionOfProducts from "../Components/CollectionOfProducts/CollectionOfProducts";
 
-const ProductsContext = createContext();
-
-const ProductsProvider = ({ children }) => {
+const ProductPage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -13,6 +14,7 @@ const ProductsProvider = ({ children }) => {
         const response = await fetch("https://fakestoreapi.com/products");
         const data = await response.json();
         setProducts(data);
+        console.log("ProductsPage:", data);
         // Handle the fetched products data here
       } catch (error) {
         setError(error);
@@ -26,10 +28,12 @@ const ProductsProvider = ({ children }) => {
   }, []);
 
   return (
-    <ProductsContext.Provider value={{ products, loading, error }}>
-      {children}
-    </ProductsContext.Provider>
+    <div>
+      <Navbar />
+      <CollectionOfProducts products={products} />
+      <Footer />
+    </div>
   );
 };
 
-export { ProductsProvider, ProductsContext };
+export default ProductPage;

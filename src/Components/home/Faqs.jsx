@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Faqs = () => {
   const [openFaq, setOpenFaq] = useState(null);
@@ -51,8 +52,8 @@ const Faqs = () => {
               Frequently Asked Questions
             </h2>
             <p className="text-lg text-gray-500 mb-8">
-              Can't find the answer you're looking for? We're here to help with any
-              questions you may have about our products and services.
+              Can't find the answer you're looking for? We're here to help with
+              any questions you may have about our products and services.
             </p>
             <button className="bg-black text-white px-6 py-3 rounded-full hover:bg-gray-800 transition-colors">
               Ask a Question
@@ -64,29 +65,45 @@ const Faqs = () => {
         <div className="lg:col-span-8">
           <div className="space-y-4">
             {faqs.map((faq) => (
-              <div
-                key={faq.id}
-                className="border border-gray-200 rounded-lg overflow-hidden"
-              >
-                <button
-                  className="w-full px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition-colors"
-                  onClick={() => toggleFaq(faq.id)}
+              <AnimatePresence key={faq.id} mode="wait">
+                <motion.div
+                  className="border border-gray-200 rounded-lg overflow-hidden"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <h3 className="text-lg font-semibold text-gray-900">
-                    {faq.question}
-                  </h3>
-                  {openFaq === faq.id ? (
-                    <ChevronUp className="w-5 h-5 text-gray-500" />
-                  ) : (
-                    <ChevronDown className="w-5 h-5 text-gray-500" />
-                  )}
-                </button>
-                {openFaq === faq.id && (
-                  <div className="px-6 pb-4">
-                    <p className="text-gray-500">{faq.answer}</p>
-                  </div>
-                )}
-              </div>
+                  <button
+                    className="w-full px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition-colors"
+                    onClick={() => toggleFaq(faq.id)}
+                  >
+                    <h3 className="text-lg font-semibold text-gray-900">
+                      {faq.question}
+                    </h3>
+                    <motion.div
+                      animate={{ rotate: openFaq === faq.id ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <ChevronDown className="w-5 h-5 text-gray-500" />
+                    </motion.div>
+                  </button>
+                  <AnimatePresence>
+                    {openFaq === faq.id && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-6 pb-4">
+                          <p className="text-gray-500">{faq.answer}</p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              </AnimatePresence>
             ))}
           </div>
         </div>

@@ -2,6 +2,7 @@ import React from "react";
 import { ShoppingCart, User, Search, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "../assets/logo.png";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -22,7 +23,7 @@ const Navbar = () => {
           {/* Categories Dropdown */}
           <div className="flex items-center gap-8">
             <div className="text-white">
-              <button>Home</button>
+              <Link to="/">Home</Link>
             </div>
             <div className="text-white relative">
               <button

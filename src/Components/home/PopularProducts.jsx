@@ -1,9 +1,11 @@
-import React, { useContext } from "react";
-import { ProductsContext } from "../../Context/ProductsContext";
+import React from "react";
 import { Plus } from "lucide-react";
 
-const PopularProducts = () => {
-  const { products, loading } = useContext(ProductsContext);
+const PopularProducts = ({ products, loading }) => {
+  const popularProducts = products.sort(
+    (a, b) => b.rating.count - a.rating.count
+  );
+  console.log(popularProducts);
   return (
     <>
       <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
@@ -16,22 +18,22 @@ const PopularProducts = () => {
             nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {loading ? (
             <div className="flex justify-center items-center h-86 w-86">
               <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-black"></div>
             </div>
           ) : (
-            products.map((product) => (
+            popularProducts.slice(0, 8).map((product) => (
               <div
                 key={product.id || `product-${Math.random()}`}
                 className="overflow-hidden rounded-lg"
               >
-                <div className="aspect-w-4 aspect-h-3">
+                <div className="h-60 bg-gray-200 rounded-xl">
                   <img
                     src={product.image}
                     alt={product.title}
-                    className="w-full h-full object-cover rounded-xl"
+                    className="w-full h-full object-contain rounded-xl"
                   />
                 </div>
                 <div className="mt-4">

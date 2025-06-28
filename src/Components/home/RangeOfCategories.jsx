@@ -8,8 +8,8 @@ const RangeOfCategories = () => {
           View Our Range Of Categories
         </h2>
         <p className="mt-4 text-lg text-gray-500 max-w-3xl mx-auto">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh
-          euismod tincidunt ut laoreet dolore magna aliquam.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam
+          nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam.
         </p>
       </div>
 
@@ -25,7 +25,9 @@ const RangeOfCategories = () => {
           </div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent">
             <div className="absolute bottom-6 left-6">
-              <h3 className="text-xl font-semibold text-white">Bedroom Furniture</h3>
+              <h3 className="text-xl font-semibold text-white">
+                Bedroom Furniture
+              </h3>
             </div>
           </div>
         </div>
@@ -41,7 +43,9 @@ const RangeOfCategories = () => {
           </div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent">
             <div className="absolute bottom-6 left-6">
-              <h3 className="text-xl font-semibold text-white">Living Room Furniture</h3>
+              <h3 className="text-xl font-semibold text-white">
+                Living Room Furniture
+              </h3>
             </div>
           </div>
         </div>
