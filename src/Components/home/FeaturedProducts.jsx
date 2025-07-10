@@ -19,7 +19,7 @@ const FeaturedProducts = ({ products, loading }) => {
     <>
       <section
         id="featured-products"
-        className="max-w-7xl mx-auto mt-10 mb-10 px-10"
+        className="max-w-[1440px] mx-auto mt-10 mb-10 px-10"
       >
         <header className="flex justify-between items-center mb-10">
           <h1 className="text-4xl font-bold">Featured Products</h1>

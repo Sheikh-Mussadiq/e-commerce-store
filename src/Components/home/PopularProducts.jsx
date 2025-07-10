@@ -1,22 +1,37 @@
 import React from "react";
-import { Plus } from "lucide-react";
+import { ArrowRight, Plus } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const PopularProducts = ({ products, loading }) => {
   const popularProducts = products.sort(
     (a, b) => b.rating.count - a.rating.count
   );
   console.log(popularProducts);
+  const navigate = useNavigate();
   return (
     <>
-      <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
-            Most Popular Products
-          </h2>
-          <p className="mt-4 text-lg text-gray-500">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam
-            nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam.
-          </p>
+      <div className="max-w-[1440px] mx-auto py-16 px-4 sm:px-6 lg:px-8">
+        <div className="mb-12 flex justify-between items-center">
+          <div>
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
+              Most Popular Products
+            </h2>
+            <p className="mt-4 text-lg text-gray-500">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam
+              nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam.
+            </p>
+          </div>
+          <div className="flex justify-between items-center">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => navigate("/products")}
+              className="bg-black text-white px-4 py-2 rounded-full flex items-center gap-2 cursor-pointer"
+            >
+              View All <ArrowRight className="w-4 h-4" />
+            </motion.button>
+          </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {loading ? (
