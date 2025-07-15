@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const CategoriesSelector = () => {
+const CategoriesSelector = ({ onCategoryChange }) => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -8,6 +8,7 @@ const CategoriesSelector = () => {
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
+    onCategoryChange(category);
     console.log("Selected Category:", category);
   };
 
@@ -33,6 +34,11 @@ const CategoriesSelector = () => {
     fetchProducts();
   }, []);
 
+  const handleClearCategory = () => {
+    setSelectedCategory(null);
+    onCategoryChange(null);
+  };
+
   return (
     <>
       <aside className="flex flex-col gap-2 border-2 border-gray-300 rounded-md p-4 h-fit w-full">
@@ -52,6 +58,12 @@ const CategoriesSelector = () => {
             </div>
           ))
         )}
+        <button
+          className="bg-white underline text-black px-4 py-2 rounded-full cursor-pointer hover:bg-gray-800"
+          onClick={handleClearCategory}
+        >
+          Clear Category
+        </button>
       </aside>
     </>
   );
