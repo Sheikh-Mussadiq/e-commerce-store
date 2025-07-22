@@ -1,20 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
-import CollectionOfProducts from "../Components/collectionofproducts/CollectionOfProducts";
+import ProductDetails from "../Components/productdetails/ProductDetails";
+import { useParams } from "react-router-dom";
 
-const ProductPage = () => {
+const ProductDetailsPage = () => {
+  const { id } = useParams();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const response = await fetch("https://fakestoreapi.com/products");
+        const response = await fetch(`https://fakestoreapi.com/products/${id}`);
         const data = await response.json();
         setProducts(data);
-        console.log("ProductsPage:", data);
+        console.log("ProductDetailsPage:", data);
         // Handle the fetched products data here
       } catch (error) {
         setError(error);
@@ -25,15 +29,20 @@ const ProductPage = () => {
     };
 
     fetchProducts();
-  }, []);
+  }, [id]);
 
   return (
     <div>
       <Navbar />
-      <CollectionOfProducts products={products} />
+      <ProductDetails
+        id={id}
+        products={products}
+        loading={loading}
+        error={error}
+      />
       <Footer />
     </div>
   );
 };
 
-export default ProductPage;
+export default ProductDetailsPage;

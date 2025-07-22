@@ -2,11 +2,14 @@ import React, { useState, useMemo } from "react";
 import CategoriesSelector from "./categoriesSelector";
 import PriceRange from "./PriceRange";
 import SearchBar from "./SearchBar";
+import { useNavigate } from "react-router-dom";
 
 const CollectionOfProducts = ({ products }) => {
   const [selectedPriceRanges, setSelectedPriceRanges] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+
   const handlePriceRangeChange = (ranges) => {
     setSelectedPriceRanges(ranges);
   };
@@ -78,7 +81,11 @@ const CollectionOfProducts = ({ products }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredProducts.length > 0
               ? filteredProducts.map((product) => (
-                  <div key={product.id} className="border rounded-lg p-4">
+                  <div
+                    key={product.id}
+                    className="border rounded-lg p-4 cursor-pointer"
+                    onClick={() => navigate(`/product-details/${product.id}`)}
+                  >
                     <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
                       <img
                         src={product.image}
